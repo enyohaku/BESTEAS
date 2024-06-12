@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新規登録</title>
+</head>
+<body>
+    <h2>新規登録</h2>
+    <form action="register_new.php" method="post">
+        名前: <input type="text" name="name" required><br>
+        メール: <input type="email" name="email" required><br>
+        パスワード: <input type="password" name="password" required><br>
+        性別: 
+        <select name="gender" required>
+            <option value="male">男性</option>
+            <option value="female">女性</option>
+            <option value="other">その他</option>
+        </select><br>
+        お茶歴: 
+        <select name="history" required>
+            <option value="beginner">初心者です</option>
+            <option value="less_than_one_year">1年未満です</option>
+            <option value="around_five_years">5年ほどです</option>
+            <option value="around_ten_years">約10年位になります</option>
+            <option value="more_than_ten_years">10年以上です</option>
+        </select><br>
+        <input type="submit" value="登録">
+    </form>
+</body>
+</html>
