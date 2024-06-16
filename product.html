@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>店舗情報入力</title>
+    <style>
+        /* ここにCSSを追加 */
+    </style>
+</head>
+<body>
+    <h1>店舗情報入力</h1>
+    <form id="store-input-form" action="product.php" method="POST" enctype="multipart/form-data">
+        <label for="store-name">店舗名:</label>
+        <input type="text" id="store-name" name="store-name" required>
+
+        <label for="store-location">店舗所在地:</label>
+        <input type="text" id="store-location" name="store-location" required>
+
+        <label for="product-name">商品名:</label>
+        <input type="text" id="product-name" name="product-name" required>
+
+        <label for="product-info">商品の情報:</label>
+        <textarea id="product-info" name="product-info" required></textarea>
+
+        <label for="product-photo">商品写真:</label>
+        <input type="file" id="product-photo" name="product-photo" required>
+
+        <input type="submit" value="送信">
+    </form>
+</body>
+</html>
