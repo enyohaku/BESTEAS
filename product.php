@@ -1,5 +1,7 @@
 <?php
-session_start();
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -26,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $extension = pathinfo($file_name, PATHINFO_EXTENSION);
         $file_name = date("YmdHis").md5(session_id()) . "." . $extension;
 
-        $upload_dir = 'BESTEAS/upload2s/';
+        $upload_dir = 'upload2s/';
         $uploaded_file = $upload_dir . $file_name;
 
         if (is_uploaded_file($tmp_path)) {
@@ -36,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $stmt->bind_param("sssss", $store_name, $store_location, $product_name, $product_info, $uploaded_file);
 
                 if ($stmt->execute()) {
-                    echo "情報が成功的に保存されました";
+                    echo "情報が保存されました";
                 } else {
                     echo "エラー: " . $stmt->error;
                 }
