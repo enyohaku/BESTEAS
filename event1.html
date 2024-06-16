@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QRか店名一覧か選択</title>
+    <style>
+    body, html {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        }
+        @media(max-width: 768px){
+        body{
+            padding: 10px;
+        }
+        header,input,button{
+            width: 100%;
+        }
+    }  
+    body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            background-color: rgb(246, 239, 202);
+        }
+        #logo img {
+            margin-top: 1px; /* 上部のマージンを設定 */
+            margin-bottom: 1px; /* 下部のマージンを設定 */
+            width: 300px;
+            height: 300px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="logo"><img src="img/besteas.png" alt=""></div>
+    <div style="text-align: center;">
+            <video id="qr-video" width="300" height="200" style="border: 1px solid black;"></video>
+            <canvas id="qr-canvas" style="display: none;"></canvas>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jsQR/1.3.1/jsQR.min.js"></script>
+        <h2>QRコードで店の情報を読み込む</h2>
+        <!-- <img src="qr_placeholder.png" alt="QRコード" style="margin-bottom: 20px;"> -->
+        <!-- <p>QRコードをスキャンして店の情報を取得してください。</p> -->
+    </div>
+    <div style="margin-top: 30px;">
+    <h2>参加店一覧から選ぶ</h2>
+    <select id="storeList" onchange="if (this.value) window.location.href=this.value">
+        <option value="">選択してください</option>
+        <option value="demo1.html">旭園</option>
+        <option value="demo2.html">land of srilanka</option>
+        <option value="demo3.html">台湾高山園</option>
+        <option value="store4.html">勝駒</option>
+        <option value="store5.html">男山</option>
+        <option value="store6.html">浦霞</option>
+        <option value="store7.html">新政</option>
+        <option value="store8.html">金雀</option>
+        <option value="store9.html">東洋美人</option>
+        <option value="store10.html">花垣</option>
+    </select>
+</div>
+</div>
+<div style="margin-top: 20px;">
+    <button onclick="window.location.href='history.html'">履歴ページへ</button>
+    <button id="back-to-front">最初のページに戻る</button>
+</div>
+<script>
+const video = document.getElementById('qr-video');
+const canvasElement = document.getElementById('qr-canvas');
+const canvas = canvasElement.getContext('2d');
+
+navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
+    .then(function(stream) {
+        video.srcObject = stream;
+        video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
+        video.play();
+        requestAnimationFrame(tick);
+    });
+
+function tick() {
+    if (video.readyState === video.HAVE_ENOUGH_DATA) {
+        canvasElement.height = video.videoHeight;
+        canvasElement.width = video.videoWidth;
+        canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
+        var imageData = canvas.getImageData(0, 0, canvasElement.width, canvasElement.height);
+        var code = jsQR(imageData.data, imageData.width, imageData.height, {
+            inversionAttempts: "dontInvert",
+        });
+        if (code) {
+            alert(`Found QR code: ${code.data}`);
+            // QRコードの内容に基づいて何かをする
+        }
+    }
+    requestAnimationFrame(tick);
+}
+
+document.getElementById('back-to-front').addEventListener('click', function() {
+    window.location.href = 'frontpg.html';
+});
+</script>
+</body>
+</html>
