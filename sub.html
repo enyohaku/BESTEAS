@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お茶の試飲記録</title>
+</head>
+<body>
+    <h2>お茶の試飲記録</h2>
+    <form action="submit_tea_tasting.php" method="post">
+        ユーザーID: <input type="number" name="user_id" required><br>
+        渋み (1-5): <input type="number" name="astringency" min="1" max="5" required><br>
+        甘み (1-5): <input type="number" name="sweetness" min="1" max="5" required><br>
+        香り (1-5): <input type="number" name="aroma" min="1" max="5" required><br>
+        苦味 (1-5): <input type="number" name="bitterness" min="1" max="5" required><br>
+        希少性 (1-5): <input type="number" name="rarity" min="1" max="5" required><br>
+        お気に入り度 (1-10): <input type="number" name="favorite_rating" min="1" max="10" required><br>
+        コメント: <textarea name="comments"></textarea><br>
+        <input type="submit" value="記録を登録">
+    </form>
+</body>
+</html>
