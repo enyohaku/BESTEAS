@@ -38,7 +38,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $stmt->bind_param("sssss", $store_name, $store_location, $product_name, $product_info, $uploaded_file);
 
                 if ($stmt->execute()) {
-                    echo "情報が保存されました";
+                    echo "情報が成功的に保存されました<br>";
+                    echo "店舗名: " . $store_name . "<br>";
+                    echo "店舗所在地: " . $store_location . "<br>";
+                    echo "商品名: " . $product_name . "<br>";
+                    echo "商品の情報: " . $product_info . "<br>";
+                    echo "商品写真: <br>";
+                    echo "<img src='" . $uploaded_file . "' alt='商品写真'><br>";
                 } else {
                     echo "エラー: " . $stmt->error;
                 }
