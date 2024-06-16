@@ -10,21 +10,21 @@
 </head>
 <body>
     <h1>店舗情報入力</h1>
-    <form id="store-input-form" action="product.php" method="POST" enctype="multipart/form-data">
-        <label for="store-name">店舗名:</label>
-        <input type="text" id="store-name" name="store-name" required>
+    <form id="store-input-form" action="BESTEAS/product.php" method="POST" enctype="multipart/form-data">
+        <label for="store_name">店舗名:</label>
+        <input type="text" id="store_name" name="store_name" required>
 
-        <label for="store-location">店舗所在地:</label>
-        <input type="text" id="store-location" name="store-location" required>
+        <label for="store_location">店舗所在地:</label>
+        <input type="text" id="store_location" name="store_location" required>
 
-        <label for="product-name">商品名:</label>
-        <input type="text" id="product-name" name="product-name" required>
+        <label for="product_name">商品名:</label>
+        <input type="text" id="product_name" name="product_name" required>
 
-        <label for="product-info">商品の情報:</label>
-        <textarea id="product-info" name="product-info" required></textarea>
+        <label for="product_info">商品の情報:</label>
+        <textarea id="product_info" name="product_info" required></textarea>
 
-        <label for="product-photo">商品写真:</label>
-        <input type="file" id="product-photo" name="product-photo" required>
+        <label for="product_photo">商品写真:</label>
+        <input type="file" accept="image/*" capture="camera" id="product_photo" name="product_photo" required>
 
         <input type="submit" value="送信">
     </form>
