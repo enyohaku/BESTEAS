@@ -8,8 +8,8 @@
 function db_conn(){
   try {
     $db_name = "enyohaku_teatasting";   //データベース名
-    $db_id   = "enyohaku";      //アカウント名
-    $db_pw   = "dkbest120";     //パスワード：XAMPPはパスワード無しに修正してください。
+    $db_id   = "";      //アカウント名
+    $db_pw   = "";     //パスワード：XAMPPはパスワード無しに修正してください。
     $db_host = "mysql57.enyohaku.sakura.ne.jp"; //DBホスト
 
     return new PDO('mysql:dbname='.$db_name.';charset=utf8;host='.$db_host, $db_id, $db_pw);
