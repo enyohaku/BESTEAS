@@ -12,5 +12,14 @@
         パスワード: <input type="password" name="password" required><br>
         <input type="submit" value="ログイン">
     </form>
+    <script>
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const error = urlParams.get('error');
+            if (error) {
+                alert(decodeURIComponent(error));
+            }
+        }
+    </script>
 </body>
 </html>

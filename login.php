@@ -27,17 +27,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($stmt->num_rows > 0) {
         $stmt->bind_result($hashed_password);
         $stmt->fetch();
-
+    
         if (password_verify($password, $hashed_password)) {
             $_SESSION['email'] = $email;
-            echo "ログイン成功";
+            header("Location: event.html");
+            exit;        
         } else {
-            echo "パスワードが違います";
+            header("Location: login.html?error=パスワードが違います");
+            exit;
         }
     } else {
-        echo "ユーザーが見つかりません";
+        header("Location: login.html?error=メールアドレスが違います");
+        exit;
     }
-
     $stmt->close();
     $conn->close();
 }
