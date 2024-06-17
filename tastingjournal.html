@@ -8,6 +8,7 @@
     <!-- ここにスタイルとスクリプトを追加 -->
 </head>
 <body>
+    <h1 id="welcome">こんにちは、<span id="username"></span>さん</h1>    
     <h1>試飲ジャーナル</h1>
 
     <form id="tastingForm" action="tastingjournal.php" method="post">
@@ -27,6 +28,13 @@
     </form>
 
     <script>
+         // ユーザーの名前を取得して表示
+    fetch('get_username.php')
+        .then(response => response.text())
+        .then(name => {
+            document.getElementById('username').textContent = name;
+        });
+        
         document.addEventListener('DOMContentLoaded', function () {
             const ctx = document.getElementById('teaRatingChart').getContext('2d');
             const teaRatingChart = new Chart(ctx, {

@@ -18,20 +18,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("接続失敗: " . $conn->connect_error);
     }
 
-    // SQLクエリの準備と実行
-    $stmt = $conn->prepare("SELECT password FROM users WHERE email = ?");
+    // ユーザーの情報をデータベースから取得
+    $stmt = $conn->prepare("SELECT name, password FROM users WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
-    $stmt->store_result();
+    $stmt->bind_result($name, $hashed_password);
 
-    if ($stmt->num_rows > 0) {
-        $stmt->bind_result($hashed_password);
-        $stmt->fetch();
-    
+    if ($stmt->fetch()) {
         if (password_verify($password, $hashed_password)) {
-            $_SESSION['email'] = $email;
-            header("Location: event.html");
-            exit;        
+            echo "ログイン成功";
+            $_SESSION["name"] = $name;  // ユーザーの名前をセッションに保存
+            header("Location: tastingjournal.html");  // tastingjournal.htmlにリダイレクト
+            exit;
         } else {
             header("Location: login.html?error=パスワードが違います");
             exit;
@@ -40,6 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: login.html?error=メールアドレスが違います");
         exit;
     }
+
     $stmt->close();
     $conn->close();
 }
