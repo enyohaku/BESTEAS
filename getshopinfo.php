@@ -1,4 +1,5 @@
 <?php
+ession_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -23,9 +24,9 @@ if ($result->num_rows > 0) {
   // If the store exists, redirect to event.php
   // Note: This will redirect to the first matching store
   $row = $result->fetch_assoc();
-  header("Location: event.php?store_name=" . $row["name"]);
-} else {
-  // If the store does not exist, display an error message
+  $_SESSION['store_info'] = $row; // Save the store info in the session
+  header("Location: event.php");
+} else {  // If the store does not exist, display an error message
   echo "該当の店がありません";
 }
 
