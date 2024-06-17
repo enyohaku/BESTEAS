@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>試飲ジャーナル</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- ここにスタイルとスクリプトを追加 -->
+</head>
+<body>
+    <h1>試飲ジャーナル</h1>
+
+    <form id="tastingForm" action="tastingjournal.php" method="post">
+        <label for="astringency">渋み:</label>
+        <input type="range" id="astringency" name="astringency" min="1" max="5" step="1">
+        <label for="sweetness">甘み:</label>
+        <input type="range" id="sweetness" name="sweetness" min="1" max="5" step="1">
+        <label for="aroma">香り:</label>
+        <input type="range" id="aroma" name="aroma" min="1" max="5" step="1">
+        <label for="bitterness">苦味:</label>
+        <input type="range" id="bitterness" name="bitterness" min="1" max="5" step="1">
+        <label for="rarity">希少性:</label>
+        <input type="range" id="rarity" name="rarity" min="1" max="5" step="1">
+        <label for="favorite">お気に入り度:</label>
+        <input type="range" id="favorite" name="favorite" min="1" max="10" step="1">
+        <input type="submit" value="送信">
+    </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const ctx = document.getElementById('teaRatingChart').getContext('2d');
+            const teaRatingChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['渋み', '甘み', '香り', '苦味', '希少性'],
+                    datasets: [{
+                        label: 'お茶の評価',
+                        data: [1, 1, 1, 1, 1], // 初期値
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        r: {
+                            beginAtZero: true,
+                            min: 0,
+                            max: 5,
+                            ticks: {
+                                stepSize: 1
+                            }
+                        }
+                    }
+                }
+            });
+    
+            // スライダーの値が変更されたときにチャートを更新
+            document.querySelectorAll('input[type=range]').forEach(input => {
+                input.addEventListener('input', function () {
+                    teaRatingChart.data.datasets[0].data = [
+                        document.getElementById('astringency').value,
+                        document.getElementById('sweetness').value,
+                        document.getElementById('aroma').value,
+                        document.getElementById('bitterness').value,
+                        document.getElementById('rarity').value
+                    ];
+                    teaRatingChart.update();
+                });
+            });
+        });
+        </script></body>
+</html>
