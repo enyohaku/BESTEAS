@@ -1,4 +1,8 @@
 <?php
+session_start();
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -13,8 +17,8 @@ if ($conn->connect_error) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $id = $_POST['id'];
-    $user_id = $_POST['user_id'];
+    // $id = $_POST['id'];
+    // $user_id = $_POST['user_id'];
     $astringency = $_POST['astringency'];
     $sweetness = $_POST['sweetness'];
     $aroma = $_POST['aroma'];
@@ -24,8 +28,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $comments = $_POST['comments'];
 
 
-    $sql = "INSERT INTO feedback (id, user_id, astringency, sweetness, aroma, bitterness, rarity, favorite_rating, comments)
-    VALUES ('$id', '$user_id', '$astringency', '$sweetness', '$aroma', '$bitterness', '$rarity', '$favorite_rating', '$comments')";
+    $sql = "INSERT INTO kiroku ( astringency, sweetness, aroma, bitterness, rarity, favorite_rating, comments)
+    VALUES ( '$astringency', '$sweetness', '$aroma', '$bitterness', '$rarity', '$favorite_rating', '$comments')";
 
     if ($conn->query($sql) === TRUE) {
       echo "New record created successfully";

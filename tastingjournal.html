@@ -22,10 +22,16 @@
         <input type="range" id="bitterness" name="bitterness" min="1" max="5" step="1">
         <label for="rarity">希少性:</label>
         <input type="range" id="rarity" name="rarity" min="1" max="5" step="1">
-        <label for="favorite">お気に入り度:</label>
-        <input type="range" id="favorite" name="favorite" min="1" max="10" step="1">
+        <label for="favorite_rating">お気に入り度:</label>
+        <input type="range" id="favorite_rating" name="favorite_rating" min="1" max="10" step="1">
+        <label for="comments">感想:</label>
+        <input type="text" id="comments" name="comments">
+
         <input type="submit" value="送信">
     </form>
+
+    <!-- チャートを描画するための<canvas>要素を追加 -->
+    <canvas id="teaRatingChart"></canvas>
 
     <script>
          // ユーザーの名前を取得して表示
@@ -77,5 +83,6 @@
                 });
             });
         });
-        </script></body>
+        </script>
+        </body>
 </html>
