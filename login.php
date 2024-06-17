@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($password, $hashed_password)) {
             echo "ログイン成功";
             $_SESSION["name"] = $name;  // ユーザーの名前をセッションに保存
-            header("Location: tastingjournal.html");  // tastingjournal.htmlにリダイレクト
+            header("Location: mainpage.html");  // tastingjournal.htmlにリダイレクト
             exit;
         } else {
             header("Location: login.html?error=パスワードが違います");

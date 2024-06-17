@@ -12,7 +12,8 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT * FROM store"; // Replace with your SQL query
+$store_name = $_GET['store_name']; // Get the store name from the search box
+$sql = "SELECT * FROM store WHERE name = '$store_name'"; // Replace with your SQL query
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
