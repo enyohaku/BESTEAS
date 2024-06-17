@@ -1,4 +1,8 @@
 <?php
+session_start();
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -17,16 +21,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $phone = $_POST['phone'];
 
-    $stmt = $conn->prepare("INSERT INTO kanri (store_name, admin_name, email, password, phone) VALUES (?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssss", $store_name, $admin_name, $email, $password, $phone);
+    // Check if the email already exists
+    $check_email = $conn->prepare("SELECT * FROM kanri WHERE email = ?");
+    $check_email->bind_param("s", $email);
+    $check_email->execute();
+    $check_email_result = $check_email->get_result();
 
-    if ($stmt->execute()) {
-        echo "新規登録が成功しました";
+    if ($check_email_result->num_rows > 0) {
+        // The email already exists
+        echo "エラー: そのメールアドレスは既に使用されています。";
     } else {
-        echo "エラー: " . $stmt->error;
-    }
+        // The email does not exist, proceed with the registration
+        $stmt = $conn->prepare("INSERT INTO kanri (store_name, admin_name, email, password, phone) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssss", $store_name, $admin_name, $email, $password, $phone);
 
-    $stmt->close();
+        if ($stmt->execute()) {
+            // If the registration was successful, redirect to adminscreen.html
+            header("Location: adminscreen.html");
+            exit; // Ensure no further processing is done
+        } else {
+            echo "エラー: " . $stmt->error;
+        }
+        $stmt->close();
+    }
 }
 
 $conn->close();

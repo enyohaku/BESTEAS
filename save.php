@@ -33,7 +33,7 @@ if ($form_data) {
   VALUES ( '$astringency', '$sweetness', '$aroma', '$bitterness', '$rarity', '$favorite_rating', '$comments')";
 
   if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
+    echo "New record created successfully<br>";
   } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
   }
@@ -42,4 +42,6 @@ if ($form_data) {
 } else {
   echo "エラー: フォームからのデータがありません。";
 }
+echo '<a href="mainpage.html">メインページに戻る</a><br>';
+echo '<a href="mydata.php">記録一覧</a>';
 ?>
