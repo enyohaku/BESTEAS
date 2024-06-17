@@ -1,8 +1,11 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "besteas"; // Replace with your database name
+$dbname = "besteas"; 
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -13,21 +16,17 @@ if ($conn->connect_error) {
 }
 
 $store_name = $_GET['store_name']; // Get the store name from the search box
-$sql = "SELECT * FROM store WHERE name = '$store_name'"; // Replace with your SQL query
+$sql = "SELECT * FROM store WHERE store_name LIKE '%$store_name%'"; // Use the LIKE operator for fuzzy search
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-  // Output data of each row
-  while($row = $result->fetch_assoc()) {
-    echo "store_name: " . $row["store_name"]. "<br>"; // Replace with your column names
-    echo "store_location: " . $row["store_location"]. "<br>";
-    echo "product_name: " . $row["product_name"]. "<br>";
-    echo "product_info: " . $row["product_info"]. "<br>";
-    echo "product_photo: " . $row["product_photo"]. "<br>";
-    
-  }
+  // If the store exists, redirect to event.php
+  // Note: This will redirect to the first matching store
+  $row = $result->fetch_assoc();
+  header("Location: event.php?store_name=" . $row["name"]);
 } else {
-  echo "No results";
+  // If the store does not exist, display an error message
+  echo "該当の店がありません";
 }
 
 $conn->close();

@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stmt->execute()) {
             echo "新規登録が成功しました";
             $_SESSION["name"] = $name;  // ユーザーの名前をセッションに保存
-            header("Location: tastingjournal.html");  // tastingjournal.htmlにリダイレクト
+            header("Location: mainpage.html");  // mainpage.htmlにリダイレクト
             exit;
         } else {
             echo "エラー: " . $stmt->error;
