@@ -45,19 +45,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     echo "商品の情報: " . $product_info . "<br>";
                     echo "商品写真: <br>";
                     echo "<img src='" . $uploaded_file . "' alt='商品写真'><br>";
-                } else {
-                    echo "エラー: " . $stmt->error;
-                }
+ // 保存ボタンと修正ボタンを表示
+ echo "<form action='adminscreen.html' method='post'>";
+ echo "<input type='submit' value='保存'>";
+ echo "</form>";
 
-                $stmt->close();
-            } else {
-                echo "Error:アップロードできませんでした。";
-            }
-        }
-    } else {
-        echo "Error:画像が送信されていません";
-    }
+ echo "<form action='kanriedit.php' method='post'>";
+ echo "<input type='submit' value='修正'>";
+ echo "</form>";
+} else {
+ echo "エラー: " . $stmt->error;
 }
 
+$stmt->close();
+} else {
+echo "Error:アップロードできませんでした。";
+}
+}
+} else {
+echo "Error:画像が送信されていません";
+}
+} else {
+echo "エラー: " . $stmt->error;
+}
 $conn->close();
+ 
+ 
 ?>
