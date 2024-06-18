@@ -4,28 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>新規登録</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #FFF9E3; /* 薄い黄色 */
+            font-family: 'Comic Sans MS', cursive, sans-serif; /* 柔らかい感じのフォント */
+        }
+    </style>
 </head>
-<body>
-    <h2>新規登録</h2>
-    <form action="mainpage.html" method="post">
-        名前: <input type="text" name="name" required><br>
-        メール: <input type="email" name="email" required><br>
-        パスワード: <input type="password" name="password" required><br>
-        性別: 
-        <select name="gender" required>
-            <option value="male">男性</option>
-            <option value="female">女性</option>
-            <option value="other">その他</option>
-        </select><br>
-        お茶歴: 
-        <select name="history" required>
-            <option value="beginner">初心者です</option>
-            <option value="less_than_one_year">1年未満です</option>
-            <option value="around_five_years">5年ほどです</option>
-            <option value="around_ten_years">約10年位になります</option>
-            <option value="more_than_ten_years">10年以上です</option>
-        </select><br>
-        <input type="submit" value="登録">
-    </form>
+<body class="flex items-center justify-center min-h-screen">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+        <h2 class="text-2xl font-bold mb-4 text-center">新規登録</h2>
+        <img src="img/スクリーンショット 2024-06-13 12.09.21.png" alt="クマのロゴ" class="w-full max-w-xs mx-auto mb-4">
+        <form action="mainpage.html" method="post" class="space-y-4">
+            <div>
+                <label for="name" class="block text-sm font-medium text-gray-700">名前:</label>
+                <input type="text" name="name" id="name" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            </div>
+            <div>
+                <label for="email" class="block text-sm font-medium text-gray-700">メール:</label>
+                <input type="email" name="email" id="email" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            </div>
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-700">パスワード:</label>
+                <input type="password" name="password" id="password" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            </div>
+            <div>
+                <label for="gender" class="block text-sm font-medium text-gray-700">性別:</label>
+                <select name="gender" id="gender" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    <option value="male">男性</option>
+                    <option value="female">女性</option>
+                    <option value="other">その他</option>
+                </select>
+            </div>
+            <div>
+                <label for="history" class="block text-sm font-medium text-gray-700">お茶歴:</label>
+                <select name="history" id="history" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    <option value="beginner">初心者です</option>
+                    <option value="less_than_one_year">1年未満です</option>
+                    <option value="around_five_years">5年ほどです</option>
+                    <option value="around_ten_years">約10年位になります</option>
+                    <option value="more_than_ten_years">10年以上です</option>
+                </select>
+            </div>
+            <div class="text-center">
+                <input type="submit" value="登録" class="mt-4 bg-indigo-500 text-white py-2 px-4 rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            </div>
+        </form>
+    </div>
 </body>
 </html>

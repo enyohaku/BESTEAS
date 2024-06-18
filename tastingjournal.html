@@ -3,32 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>試飲ジャーナル</title>
+    <title>試飲の感想</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- ここにスタイルとスクリプトを追加 -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body>
-    <h1 id="welcome">こんにちは、<span id="username"></span>さん</h1>    
-    <h1>試飲ジャーナル</h1>
+    <h1 style="font-size: 1.5em; text-align: center;">試飲の感想</h1>
+    <form id="tastingForm" action="tastingjournal.php" method="post" class="flex flex-col">
+        <div>
+            <label for="astringency">渋み:</label>
+            <input type="range" id="astringency" name="astringency" min="1" max="5" step="1">
+        </div>
+        <div>
+            <label for="sweetness">甘み:</label>
+            <input type="range" id="sweetness" name="sweetness" min="1" max="5" step="1">
+        </div>
+        <div>
+            <label for="aroma">香り:</label>
+            <input type="range" id="aroma" name="aroma" min="1" max="5" step="1">
+        </div>
+        <div>
+            <label for="bitterness">苦味:</label>
+            <input type="range" id="bitterness" name="bitterness" min="1" max="5" step="1">
+        </div>
+        <div>
+            <label for="rarity">希少性:</label>
+            <input type="range" id="rarity" name="rarity" min="1" max="5" step="1">
+        </div>
+        <div>
+            <label for="favorite_rating">お気に入り度(10点満点):</label>
+            <input type="range" id="favorite_rating" name="favorite_rating" min="1" max="10" step="1">
+        </div>
+        <div class="flex flex-col">
+            <label for="comments" class="order-1">感想:</label>
+            <textarea id="comments" name="comments" placeholder="ここに感想を書き込んでください" class="border p-2 order-2"></textarea>
+        </div>
 
-    <form id="tastingForm" action="tastingjournal.php" method="post">
-        <label for="astringency">渋み:</label>
-        <input type="range" id="astringency" name="astringency" min="1" max="5" step="1">
-        <label for="sweetness">甘み:</label>
-        <input type="range" id="sweetness" name="sweetness" min="1" max="5" step="1">
-        <label for="aroma">香り:</label>
-        <input type="range" id="aroma" name="aroma" min="1" max="5" step="1">
-        <label for="bitterness">苦味:</label>
-        <input type="range" id="bitterness" name="bitterness" min="1" max="5" step="1">
-        <label for="rarity">希少性:</label>
-        <input type="range" id="rarity" name="rarity" min="1" max="5" step="1">
-        <label for="favorite_rating">お気に入り度:</label>
-        <input type="range" id="favorite_rating" name="favorite_rating" min="1" max="10" step="1">
-        <label for="comments">感想:</label>
-        <input type="text" id="comments" name="comments">
-
-        <input type="submit" value="送信">
-    </form>
+        <input type="submit" value="送信" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">    </form>
 
     <!-- チャートを描画するための<canvas>要素を追加 -->
     <canvas id="teaRatingChart"></canvas>
