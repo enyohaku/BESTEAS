@@ -16,7 +16,9 @@
     $username = "root";
     $password = "";
     $dbname = "besteas";
-
+// 1.  DB接続します
+// include("funcs.php");
+// $pdo = db_conn();
     // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);
 

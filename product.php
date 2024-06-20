@@ -6,7 +6,9 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "besteas";
-
+// 1.  DB接続します
+// include("funcs.php");
+// $pdo = db_conn();
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($conn->connect_error) {

@@ -10,7 +10,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = "root"; // デフォルトのXAMPPユーザー名
     $db_password = ""; // デフォルトのXAMPPパスワードは空
     $dbname = "besteas"; // データベース名
-
+// 1.  DB接続します
+// include("funcs.php");
+// $pdo = db_conn();
     $conn = new mysqli($servername, $username, $db_password, $dbname);
 
     // 接続確認
